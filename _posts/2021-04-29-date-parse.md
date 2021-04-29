@@ -1,7 +1,7 @@
 ---
 title: "new Date(s: DateFromISOString)"
 date: 2021-04-29 22:00:00 +0900
-categories: javascript
+categories: javascript, diary
 ---
 
 최근 new Date() 관련 문제를 경험했는데, 버그의 내용은 서비스 내에 사용하는 캘린더 라이브러리가 Safari 브라우저에서 죽어있다는 것이였다.
