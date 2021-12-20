@@ -32,7 +32,7 @@ const ReactForm = () => {
       </label>
       <button type="submit">Join the room</button>
       
-      <!-- 3. username 상태가 동기화 되어 업데이트 된다. -->
+      {<!-- 3. username 상태가 동기화 되어 업데이트 된다. -->}
       <p>nickname is : {nickname}</p>
     </form>
   )
