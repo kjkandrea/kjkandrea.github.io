@@ -11,7 +11,7 @@ categories: develop
 
 ## '함께' 를 항상 생각하자
 
-![no-growth](../_images/no-growth.jpeg)
+![no-growth](/assets/img/no-growth.jpeg)
 
 > "이해가 되지 않습니다. 저 역시 그렇게 하려고 깃의 장점에 대한 발표도 하고 교육도 몇 번에 걸쳐 해줬는데 결국 사람들이 쓰게 하는 데 실패했습니다. 사람들이 너무 수동적이고 보수적이에요"
 >
@@ -58,7 +58,7 @@ categories: develop
 
 ## 인지하는것과 아는것의 차이. 책을 통해 개념을 숙달하자.
 
-![hurry-up](../_images/hurry-up.jpeg)
+![hurry-up](/assets/img/hurry-up.jpeg)
 
 2년 전 나에게 가장 필요한것은 구현능력 이었다.
 
@@ -82,7 +82,7 @@ categories: develop
 
  ## 나 자신이 개선할 것이 많다는것에 즐거워하자
  
- ![horse-drawing](../_images/horse-drawing.jpeg)
+ ![horse-drawing](/assets/img/horse-drawing.jpeg)
 
 개선할 부분이 많다는것을 나 자신이 더 많이 성장할 수 있는 기회라고 생각하자.
 
