@@ -136,13 +136,13 @@ export default function Button<T extends React.ElementType>(
   props: ButtonProps<T>
 ) {
   if (isPropsForPolymorphicElement<T>(props)) {
-    const {as, ...rest} = props;
-    const Element: React.ElementType = as;
-    return <Element {...rest} />;
+  const {as, ...rest} = props;
+  const Element: React.ElementType = as;
+  return <Element {...rest} />;
   } else if (isPropsForAnchorElement(props)) {
-    return <a {...props} />;
+  return <a {...props} />;
   } else {
-    return <button {...props} />;
+  return <button {...props} />;
   }
 }
 ```
@@ -186,9 +186,41 @@ export default function Button<
 
 href 사용 시 `<a>` 로 추론 되는 기능이 사라져 공짜는 아니지만, 장황한 선언을 제거하니 이제 어느정도 읽을만한 녀석이 되었다. 나는 이 버전이 마음에 든다.
 
- 
+## 부모에서 ref 전달할 수 있도록 하기
 
-## reference
+앱에 진입 시 '시작하려면 이 버튼을 누르세요.' 에 자동으로 포커스를 주고자 한다거나, 다른 여러 이유에 의해서 Button 에 ref 가 필요할 수 있다.
+
+forwardRef 를 통해 ref 를 전달 받을 수 있도록 하자.
+
+```tsx
+const defaultElement = 'button';
+
+type ButtonProps<T extends React.ElementType> = {
+  as?: T;
+} & React.ComponentPropsWithoutRef<T>;
+
+const Button = React.forwardRef(
+  <T extends React.ElementType = typeof defaultElement>(
+    {as, ...rest}: ButtonProps<T>,
+    ref: React.Ref<any>
+  ) => {
+    const Element = as ?? defaultElement;
+
+    return <Element ref={ref} {...rest} />;
+  }
+);
+
+export default Button;
+```
+
+## 마치며
+
+라이브러리 성격의 컴포넌트는 서비스 어플리케이션을 구현할때와 조금 다른 사고가 필요하다고 느꼈다. 특정한 문제를 해결하는 개발을 할때에는 불필요한 인터페이스를 최대한 줄이고 당장 필요하지 않다면 구현하지 않는(YAGNI) 원칙을 따르고자 노력했는데 많은 사용 사례를 가정하는 컴포넌트를 구현하다보니 영 익숙치 않았다.
+
+React 자체에서 제공하는 타입에 대한 이해도가 어느정도 필요하다고 느꼈다. 머릿속의 의도대로 타입을 작성하는것이 쉽지 않아 여러 레퍼런스들을 검색해가며 Button 하나 만드는데에 상당부분 시간을 할애했다. 
+
+
+## 참고 자료
 
 * [evan-moon : 타입스크립트와 함께 컴포넌트를 단계 별로 추상화해보자](https://evan-moon.github.io/2020/11/28/making-your-components-extensible-with-typescript/)
 * [Create a Polymorphic Component with Typescript and React](https://scottbolinger.com/create-a-polymorphic-component-with-typescript-and-react/)
