@@ -1,5 +1,5 @@
 ---
-title: "최소단위의 컴포넌트"
+title: "최소단위의 React 컴포넌트"
 date: 2023-01-16 12:00:00 +0900
 categories: frontend
 ---
