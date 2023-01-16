@@ -16,7 +16,7 @@ categories: frontend
 특정 문제를 해결하는 도메인에 집중하는 서비스 개발과는 달리 라이브러리를 만들듯이 **범용성**을 갖추어야 한다.
 React UI 라이브러리인 [머티리얼 UI](https://mui.com/)의 Button 컴포넌트의 API 를 살펴보자. clickable 한 요소가 수용할 수 있는 넒은 범위의 수많은 옵션(Prop)을 제공한다. 
 
-![MUI Button Prop Options](../assets/img/mui-props.png)
+![MUI Button Prop Options](/assets/img/mui-props.png)
 
 '어떻게 보여질 것인가' 를 정의하는 옵션이외에 대략 다음과 같은 옵션을 확인할 수 있다.
 
