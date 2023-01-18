@@ -239,7 +239,7 @@ function useForm<FormValues>() {
 ```
 
 자 이제 준비된 useForm 커스텀 훅을 부모 컴포넌트에서 사용해보자.\
-[react-hook-form](https://react-hook-form.com) 라이브러리를 사용해보았다면 react-hook-form 의 `useForm` 과 유사한 구조를 지님을 알아차렸을 수 있었을것이다.
+[react-hook-form](https://react-hook-form.com) 라이브러리를 사용해보았다면 react-hook-form 의 `useForm` 과 유사한 구조를 지님을 알아차렸을 수도 있겠다.
 
 ```tsx
 function SignIn() {
