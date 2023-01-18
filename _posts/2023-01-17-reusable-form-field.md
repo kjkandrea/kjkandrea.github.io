@@ -19,11 +19,11 @@ categories: frontend
 5. 사용자가 입력 필드를 작성하다가 제출하지 않은 채 이탈하려 한다면, 작성중이던 양식이 사라질 수 있다는 걸 확인시킨다.
 6. 입력 양식을 이용하여 검색을 한다면 search params 와 사용자가 입력한 양식을 동기화한다.
 
-5, 6 은 상황에 따라 구현이 필요한 불필요한 경우도 있지만, 1, 2, 3, 4 은 제출 양식을 구현할때에 대부분 등장한다.
+5, 6 은 상황에 따라 구현이 필요한 불필요한 경우도 있지만, 1, 2, 3, 4 은 제출 양식을 구현할때에 대부분의 경우 필수적이다.
 
 ## 제출 양식을 통한 사용자 인증 을 구현해보자.
 
-1, 2, 3, 4 의 기능을 관심사의 분리가 이루어지지않은 컴포넌트로 구현해 복잡성을 체감해볼까?
+1, 2, 3, 4 의 기능을 무작정 구현하여 복잡성을 체감해볼까?
 
 ```tsx
 import { signInMutation } from 'store/auth'
@@ -286,10 +286,75 @@ function SignIn() {
 
 Field 의 관심사가 명확해졌고, 그에 따라 정의된 EmailField, PasswordField 컴포넌트는 회원가입, 이메일을 통해 비밀번호 찾기, 비밀번호 변경 등에 범용적으로 사용될 수 있다.
 
+## react-hook-form 소개
 
+`react-hook-form` 은 위와 유사한 방식으로 동작하는 리액트 폼 라이브러리이다.
 
+사실 'React 제출 양식에서 입력 필드의 재사용성 찾기' 의 방안을 찾아보던 중 `react-hook-form` 을 먼저 접하게 되었고, 위 코드는 해당 라이브러리에서 [`useForm`](https://react-hook-form.com/api/useform), [`register`](https://react-hook-form.com/api/useform/register) 의 설계를 이해하기 위해 직접 구현해본 것이다.
 
+유효성 검증 시점을 선택할 수 있다거나, 구체적인 validate 규칙을 `pattern` 객체를 통해 제공하는 등 uncontrolled 하게 form 을 관리하기 위한 많은 부가기능과 여러 룰을 제공한다. 
+
+팀 내의 특정한 규칙이 없다면 입력 양식 관리는 개인 스타일에 따라 중구난방이 되기 마련인데, 
+`react-hook-form` 은 팀 단위로 일하는 클라이언트 개발 조직에서 규칙성있게 제출 양식을 관리하는 합리적인 대안으로 보인다.
+
+react-hook-form 으로 구현된 로그인 양식은 다음과 같다. 아래 예시에서는 register 를 prop 으로 전달하는 방식대신 useFormContext 훅을 사용하여 부모와 메시지를 주고받도록 하였다. 
+
+```tsx
+import {SubmitHandler, useForm, FormProvider} from 'react-hook-form';
+
+export default function SignInPage() {
+  const methods = useForm<SignInFormValues>({
+    mode: 'onSubmit',
+  });
+
+  const {
+    mutate,
+    error: {message: serverErrorMessage},
+  } = signInMutation();
+
+  return (
+    <FormProvider {...methods}>
+      <Form onSubmit={methods.handleSubmit(mutate)} noValidate>
+        <EmailField />
+        <PasswordField />
+        <button type="submit">로그인</button>
+      </Form>
+    </FormProvider>
+  )
+}
+```
+
+```tsx
+function EmailField() {
+  const {
+    register,
+    formState: {errors},
+  } = useFormContext<EmailValues>();
+
+  return (
+    <Form.Input
+      id="email"
+      type="email"
+      label="email"
+      {...register('email', {
+        required: '이메일을 입력하세요.',
+      })}
+      helperText={errors.email?.message}
+    />
+  );
+}
+```
+
+## 마치며
+
+이전에 경험했던 프로젝트에서 입력 양식을 이러한 고려 없이 관리하여, 수십개의 동일한 브랜드 검색 기능을 지니는 폼을 일괄 수정해야할 때 팀의 사기가 저하되는 경험을 한적이 있다.
+
+이렇게라도 정리해두니 동일한 시행착오를 밞지 않을것같아 한시름 놓인다.
+
+특정 라이브러리의 최소 기능 버전을 러프하게 구현해보는 것은 해당 라이브러리를 이해하기에 많은 도움이 되는것같다.
 
 ## reference
 
+* [react-hook-form](https://react-hook-form.com/api/useform)
+* [Qoddi : Create a Reusable Text Input With React Hook Form](https://blog.qoddi.com/create-a-reusable-text-input-with-react-hook-form/)
 * [심재철 : \[React Design Pattern\] Props Getter Pattern](https://simsimjae.medium.com/react-design-pattern-props-getter-pattern-5d3cf6f0b495)
