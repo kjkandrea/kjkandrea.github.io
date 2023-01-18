@@ -287,7 +287,7 @@ Field 의 관심사가 명확해졌고, 그에 따라 정의된 EmailField, Pass
 
 ## react-hook-form 소개
 
-`react-hook-form` 은 위와 유사한 방식으로 동작하는 리액트 폼 라이브러리이다.
+[react-hook-form](https://react-hook-form.com/api/useform) 은 위의 예제와 유사한 방식으로 동작하는 리액트 폼 라이브러리이다.
 
 사실 'React 제출 양식에서 입력 필드의 재사용성 찾기' 의 방안을 찾아보던 중 `react-hook-form` 을 먼저 접하게 되었고, 위 코드는 해당 라이브러리에서 [`useForm`](https://react-hook-form.com/api/useform), [`register`](https://react-hook-form.com/api/useform/register) 의 설계를 이해하기 위해 직접 구현해본 것이다.
 
