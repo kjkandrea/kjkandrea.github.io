@@ -296,7 +296,7 @@ Field 의 관심사가 명확해졌고, 그에 따라 정의된 EmailField, Pass
 팀 내의 특정한 규칙이 없다면 입력 양식 관리는 개인 스타일에 따라 중구난방이 되기 마련인데, 
 `react-hook-form` 은 팀 단위로 일하는 클라이언트 개발 조직에서 규칙성있게 제출 양식을 관리하는 합리적인 대안으로 보인다.
 
-react-hook-form 으로 구현된 로그인 양식은 다음과 같다. 아래 예시에서는 register 를 prop 으로 전달하는 방식대신 useFormContext 훅을 사용하여 부모와 메시지를 주고받도록 하였다. 
+react-hook-form 으로 구현된 로그인 양식은 다음과 같다. 아래 예시에서는 register 를 prop 으로 전달하는 방식대신 [useFormContext](https://react-hook-form.com/api/useformcontext) 훅을 사용하여 부모와 메시지를 주고받도록 하였다. 
 
 ```tsx
 import {SubmitHandler, useForm, FormProvider} from 'react-hook-form';
@@ -324,6 +324,8 @@ export default function SignInPage() {
 ```
 
 ```tsx
+import {useFormContext} from 'react-hook-form';
+
 function EmailField() {
   const {
     register,
