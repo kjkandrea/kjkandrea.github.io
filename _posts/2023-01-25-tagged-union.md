@@ -4,8 +4,6 @@ date: 2023-01-25 12:00:00 +0900
 categories: frontend
 ---
 
-## 장바구니 클라이언트 만들기
-
 클라이언트에서 데이터들을 다루다보면 특정 상태일때에만 유효한 필드, 유효하지 않은 필드가 존재한다.\
 [태그된 유니온(Tagged Union)](https://en.wikipedia.org/wiki/Tagged_union) 을 사용하여 이를 구분하는 방법을 간단히 정리해보자. 
 
