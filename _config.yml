@@ -94,9 +94,9 @@ analytics:
 # Site Author
 author:
   name             : "Karenin"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/corgi.jpg"
   bio              : "웹 클라이언트를 개발하며 즐겁게 삽니다."
-  location         : "seoul"
+  location         : "pangyo"
   email            : "kjkandrea@gmail.com"
   links:
     - label: "Email"
