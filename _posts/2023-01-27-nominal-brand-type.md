@@ -135,7 +135,7 @@ type Dollar = Brand<number, 'dollar'> // number & { __brand: 'dollar' }
 const dollar: Dollar = currencyCalculator.wonToDollar(1_000)
 const millionDollar = dollar * 1_000_000 // number
 
-renderDollar(dollar)
+renderDollar(millionDollar)
 /**
  * 🚨 TS2345:
  * Argument of type 'number' is not assignable to parameter of type 'Dollar'.
